@@ -25,50 +25,39 @@ public class BedtimeStories {
         System.out.println("3) Mary Had a Little Lamb");
 
         int userInput = scanner.nextInt();
-        String input;
+
 
         switch (userInput) {
             case 1:
-                try {
-                    FileReader fileReader = new FileReader(story[0]);
-                    BufferedReader buffReader = new BufferedReader(fileReader);
-
-                    while((input = buffReader.readLine()) !=null){
-                        System.out.println(input);
-                    }
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
+                printStory(story[0]);
                 break;
             case 2:
-                try {
-                    FileReader fileReader = new FileReader(story[1]);
-                    BufferedReader buffReader = new BufferedReader(fileReader);
-
-                    while((input = buffReader.readLine()) !=null){
-                        System.out.println(input);
-                    }
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
+                printStory(story[1]);
                 break;
             case 3:
-                try {
-                    FileReader fileReader = new FileReader(story[2]);
-                    BufferedReader buffReader = new BufferedReader(fileReader);
-
-                    while((input = buffReader.readLine()) !=null){
-                        System.out.println(input);
-                    }
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
+                printStory(story[2]);
                 break;
             default:
                 System.out.println("Invalid command");
                 break;
         }
 
+    }
+
+    public static void printStory(String fileName) {
+        try {
+            FileReader fileReader = new FileReader(fileName);
+            BufferedReader buffReader = new BufferedReader(fileReader);
+            String input;
+            int lineNumber = 1;
+
+            while((input = buffReader.readLine()) !=null){
+                System.out.println(lineNumber + ". " + input);
+                lineNumber++;
+            }
+        } catch (IOException e) {
+            System.out.println("Error reading file.");
+        }
     }
 
 }
